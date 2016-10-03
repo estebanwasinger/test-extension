@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns:test="http://www.mulesoft.org/schema/mule/test"
+
+      xmlns="http://www.mulesoft.org/schema/mule/core"
+      xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+               http://www.mulesoft.org/schema/mule/test http://www.mulesoft.org/schema/mule/metadata/current/mule-test.xsd
+                ">
+
+    <test:config name="configOne">
+    <test:connection/>
+    </test:config>
+
+    <flow name="operationOne">
+        <test:operation-one paramOne="one" paramTwo="two" />
+    </flow>
+
+    <flow name="doorOperation">
+        <test:operation-door door="someDoor">
+            <test:some-door paramOne="para1" paramTwo="para22"/>
+        </test:operation-door>
+    </flow>
+</mule>
