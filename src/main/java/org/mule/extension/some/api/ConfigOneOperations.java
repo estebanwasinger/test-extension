@@ -1,7 +1,6 @@
 package org.mule.extension.some.api;
 
 
-import org.mule.runtime.extension.api.annotation.ParameterGroup;
 import org.mule.runtime.extension.api.annotation.param.UseConfig;
 import org.mule.runtime.extension.api.runtime.operation.ParameterResolver;
 
