@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <mule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xmlns:test="http://www.mulesoft.org/schema/mule/test"
+      xmlns:metadata="http://www.mulesoft.org/schema/mule/metadata"
 
       xmlns="http://www.mulesoft.org/schema/mule/core"
       xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
-               http://www.mulesoft.org/schema/mule/test http://www.mulesoft.org/schema/mule/metadata/current/mule-test.xsd
+               http://www.mulesoft.org/schema/mule/metadata http://www.mulesoft.org/schema/mule/metadata/current/mule-metadata.xsd
                 ">
 
-    <test:config name="configOne">
-    <test:connection/>
-    </test:config>
+    <metadata:config name="configOne">
+    <metadata:connection/>
+    </metadata:config>
 
     <flow name="operationOne">
-        <test:operation-one paramOne="one" paramTwo="two" />
+        <metadata:operation-one paramOne="one" paramTwo="two" />
     </flow>
 
     <flow name="doorOperation">
-        <test:operation-door door="someDoor">
-            <test:some-door paramOne="para1" paramTwo="para22"/>
-        </test:operation-door>
+        <metadata:operation-door door="someDoor">
+            <metadata:some-door paramOne="para1" paramTwo="para22"/>
+        </metadata:operation-door>
     </flow>
 </mule>
