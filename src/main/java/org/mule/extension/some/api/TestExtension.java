@@ -11,6 +11,6 @@ import org.mule.runtime.extension.api.annotation.dsl.xml.Xml;
 @Configurations({ConfigOne.class})
 @ConnectionProviders(ConnProviderOne.class)
 @Export(classes = ConfigOne.class)
-@Xml(namespace = "metadata")
+@Xml(prefix = "metadata")
 public class TestExtension {
 }

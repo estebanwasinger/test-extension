@@ -4,8 +4,7 @@
 
       xmlns="http://www.mulesoft.org/schema/mule/core"
       xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
-               http://www.mulesoft.org/schema/mule/metadata http://www.mulesoft.org/schema/mule/metadata/current/mule-metadata.xsd
-                ">
+               http://www.mulesoft.org/schema/mule/metadata http://www.mulesoft.org/schema/mule/metadata/current/mule-metadata.xsd">
 
     <metadata:config name="configOne">
     <metadata:connection/>
