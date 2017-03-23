@@ -1,23 +1,24 @@
 package org.mule.extension.some.api;
 
+import static org.mule.runtime.api.connection.ConnectionValidationResult.success;
 import org.mule.runtime.api.connection.ConnectionException;
 import org.mule.runtime.api.connection.ConnectionProvider;
 import org.mule.runtime.api.connection.ConnectionValidationResult;
-import org.mule.runtime.extension.api.annotation.Alias;
 
-public class ConnProviderOne implements ConnectionProvider<String> {
+public class ConnProviderOne implements ConnectionProvider<TxConnection> {
+
     @Override
-    public String connect() throws ConnectionException {
-        return "Connection";
+    public TxConnection connect() throws ConnectionException {
+        return new TxConnection(String.valueOf(Math.random()));
     }
 
     @Override
-    public void disconnect(String s) {
+    public void disconnect(TxConnection s) {
 
     }
 
     @Override
-    public ConnectionValidationResult validate(String s) {
-        return ConnectionValidationResult.success();
+    public ConnectionValidationResult validate(TxConnection s) {
+        return success();
     }
 }

@@ -11,13 +11,14 @@ import org.mule.runtime.extension.api.runtime.source.SourceCallback;
 public class SourceOne extends Source<String, Attributes> {
 
     @Connection
-    String conn;
+    TxConnection conn;
 
     @UseConfig
     ConfigOne configOne;
 
     @Override
     public void onStart(SourceCallback<String, Attributes> sourceCallback) throws MuleException {
+        System.out.println(conn.getUuid());
         sourceCallback.handle(Result.<String, Attributes>builder().output("").build());
     }
 

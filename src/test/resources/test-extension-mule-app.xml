@@ -6,17 +6,26 @@
       xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
                http://www.mulesoft.org/schema/mule/metadata http://www.mulesoft.org/schema/mule/metadata/current/mule-metadata.xsd">
 
-    <metadata:config name="configOne">
-    <metadata:connection/>
+    <metadata:config name="configOne" >
+        <metadata:connection />
     </metadata:config>
 
     <flow name="operationOne">
-        <metadata:operation-one paramOne="one" paramTwo="two" />
+        <try transactionalAction="ALWAYS_BEGIN">
+            <metadata:operation-one paramOne="one" paramTwo="two" transactionalAction="ALWAYS_JOIN" />
+            <logger level="ERROR"/>
+        </try>
     </flow>
 
-    <flow name="doorOperation">
-        <metadata:operation-door door="someDoor">
-            <metadata:some-door paramOne="para1" paramTwo="para22"/>
-        </metadata:operation-door>
+    <!--<flow name="doorOperation">-->
+        <!--<metadata:operation-door door="someDoor" tra>-->
+            <!--<metadata:some-door paramOne="para1" paramTwo="para22"/>-->
+        <!--</metadata:operation-door>-->
+    <!--</flow>-->
+
+    <flow name="listener" >
+        <metadata:source-one/>
+        <metadata:operation-one paramOne="one" paramTwo="two" transactionalAction="ALWAYS_JOIN" />
+        <logger level="ERROR" message="this is avalue"/>
     </flow>
 </mule>

@@ -15,10 +15,10 @@ public class TestExtensionFunctionalTestCase extends MuleArtifactFunctionalTestC
         return "test-extension-mule-app.xml";
     }
 
-//    @Test
-//    public void test() throws Exception {
-//        flowRunner("operationOne").run();
-//    }
+    @Test
+    public void tes3t() throws Exception {
+        flowRunner("operationOne").run();
+    }
 //    @Test
 //    public void test2() throws Exception {
 //        flowRunner("doorOperation").run();
@@ -26,6 +26,6 @@ public class TestExtensionFunctionalTestCase extends MuleArtifactFunctionalTestC
 
     @Test
     public void test() throws InterruptedException {
-        Thread.sleep(20000);
+        Thread.sleep(1000);
     }
 }
