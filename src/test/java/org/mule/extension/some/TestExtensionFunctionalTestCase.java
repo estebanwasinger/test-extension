@@ -1,7 +1,9 @@
 package org.mule.extension.some;
 
-import org.junit.Test;
 import org.mule.functional.junit4.MuleArtifactFunctionalTestCase;
+import org.mule.runtime.core.api.construct.Flow;
+
+import org.junit.Test;
 
 public class TestExtensionFunctionalTestCase extends MuleArtifactFunctionalTestCase {
 
@@ -15,17 +17,27 @@ public class TestExtensionFunctionalTestCase extends MuleArtifactFunctionalTestC
         return "test-extension-mule-app.xml";
     }
 
-    @Test
-    public void tes3t() throws Exception {
-        flowRunner("operationOne").run();
-    }
+//    @Test
+//    public void tes3t() throws Exception {
+//startFlow("tx-source-alone");
+//Thread.sleep(5000);
+//    }
 //    @Test
 //    public void test2() throws Exception {
-//        flowRunner("doorOperation").run();
+//        flowRunner("operationOne").run();
+//    }
+//
+//    @Test
+//    public void test() throws InterruptedException {
+//        Thread.sleep(1000);
 //    }
 
     @Test
-    public void test() throws InterruptedException {
-        Thread.sleep(1000);
+    public void test(){
+
+    }
+
+    private void startFlow(String flowName) throws Exception {
+        ((Flow) getFlowConstruct(flowName)).start();
     }
 }

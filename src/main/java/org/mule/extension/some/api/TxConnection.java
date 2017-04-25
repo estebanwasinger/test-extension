@@ -1,33 +1,34 @@
 package org.mule.extension.some.api;
 
+import static java.lang.String.format;
+import static org.mule.extension.some.api.TestExtension.Color.ANSI_RED;
+import static org.mule.extension.some.api.TestExtension.info;
 import org.mule.runtime.extension.api.connectivity.TransactionalConnection;
 
 public class TxConnection implements TransactionalConnection {
 
-    public String getUuid() {
-        return uuid;
-    }
+    private String id;
 
-    private String uuid;
-
-    public TxConnection(String uuid) {
-        this.uuid = uuid;
+    public TxConnection(String id) {
+        this.id = id;
     }
 
     @Override
     public void begin() throws Exception {
-        System.out.println("BEGIN");
+        info(format("=== BEGINNING TRANSACTION === CONNECTION ID: [%s]", id), ANSI_RED);
     }
 
     @Override
     public void commit() throws Exception {
-        System.out.println("COMMIT");
-
+        info(format("=== COMMITTING TRANSACTION === CONNECTION ID: [%s]", id), ANSI_RED);
     }
 
     @Override
     public void rollback() throws Exception {
-        System.out.println("ROLLBACK");
+        info(format("=== ROLLBACKING TRANSACTION === CONNECTION ID: [%s]", id), ANSI_RED);
+    }
 
+    public String getId() {
+        return id;
     }
 }

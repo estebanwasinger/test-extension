@@ -1,31 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <mule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xmlns:metadata="http://www.mulesoft.org/schema/mule/metadata"
+      xmlns:tx-ext="http://www.mulesoft.org/schema/mule/tx-ext"
 
       xmlns="http://www.mulesoft.org/schema/mule/core"
       xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
-               http://www.mulesoft.org/schema/mule/metadata http://www.mulesoft.org/schema/mule/metadata/current/mule-metadata.xsd">
+               http://www.mulesoft.org/schema/mule/tx-ext http://www.mulesoft.org/schema/mule/tx-ext/current/mule-tx-ext.xsd">
 
-    <metadata:config name="configOne" >
-        <metadata:connection />
-    </metadata:config>
+    <tx-ext:config name="configOne" >
+        <tx-ext:connection />
+    </tx-ext:config>
 
     <flow name="operationOne">
-        <try transactionalAction="ALWAYS_BEGIN">
-            <metadata:operation-one paramOne="one" paramTwo="two" transactionalAction="ALWAYS_JOIN" />
-            <logger level="ERROR"/>
-        </try>
+        <tx-ext:operation-one paramOne="asd" paramTwo="asda"/>
     </flow>
 
-    <!--<flow name="doorOperation">-->
-        <!--<metadata:operation-door door="someDoor" tra>-->
-            <!--<metadata:some-door paramOne="para1" paramTwo="para22"/>-->
-        <!--</metadata:operation-door>-->
-    <!--</flow>-->
+    <flow name="tx-source-alone" initialState="stopped">
+        <tx-ext:source-one transactionalAction="ALWAYS_BEGIN"/>
+        <tx-ext:operation-one paramOne="one" paramTwo="two" transactionalAction="ALWAYS_JOIN" />
+        <set-payload value="#[sizeOf([1,2,3,4,4,4])]"/>
+        <logger level="ERROR" message="#[payload]"/>
+    </flow>
 
-    <flow name="listener" >
-        <metadata:source-one/>
-        <metadata:operation-one paramOne="one" paramTwo="two" transactionalAction="ALWAYS_JOIN" />
-        <logger level="ERROR" message="this is avalue"/>
+    <flow name="tx-source-with-operation" initialState="stopped">
+        <tx-ext:source-one transactionalAction="ALWAYS_BEGIN"/>
+        <tx-ext:operation-one paramOne="one" paramTwo="two" transactionalAction="ALWAYS_JOIN" />
+    </flow>
+
+    <flow name="tx-source-with-operation-and-explode" initialState="stopped">
+        <tx-ext:source-one transactionalAction="ALWAYS_BEGIN"/>
+        <tx-ext:operation-one paramOne="one" paramTwo="two" transactionalAction="ALWAYS_JOIN" />
     </flow>
 </mule>
