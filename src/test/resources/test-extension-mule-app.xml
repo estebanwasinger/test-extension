@@ -6,8 +6,8 @@
       xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
                http://www.mulesoft.org/schema/mule/metadata http://www.mulesoft.org/schema/mule/metadata/current/mule-metadata.xsd">
 
-    <metadata:config name="configOne" >
-        <metadata:connection />
+    <metadata:config name="configOne" configTwo="hola">
+        <metadata:connection/>
     </metadata:config>
 
     <flow name="operationOne">
@@ -15,6 +15,10 @@
             <metadata:operation-one paramOne="one" paramTwo="two" transactionalAction="ALWAYS_JOIN" />
             <logger level="ERROR"/>
         </try>
+    </flow>
+
+    <flow name="options">
+        <metadata:operation-with-options integer="14" other="#['this is a expression value']" channels="channels"/>
     </flow>
 
     <!--<flow name="doorOperation">-->

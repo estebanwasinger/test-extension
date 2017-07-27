@@ -1,12 +1,12 @@
 package org.mule.extension.some.api;
 
 
+import org.mule.runtime.extension.api.annotation.values.OfValues;
 import org.mule.runtime.extension.api.annotation.param.Config;
 import org.mule.runtime.extension.api.annotation.param.Connection;
 import org.mule.runtime.extension.api.annotation.param.Content;
+import org.mule.runtime.extension.api.annotation.param.Optional;
 import org.mule.runtime.extension.api.runtime.parameter.ParameterResolver;
-
-import java.io.InputStream;
 
 public class ConfigOneOperations {
 
@@ -18,5 +18,9 @@ public class ConfigOneOperations {
 
     public void operationDoor(String door,  ParameterResolver<Door> someDoor){
         System.out.println(door +","+  someDoor);
+    }
+
+    public void operationWithOptions(@Optional String other, int integer, @OfValues(ChannelsProvider.class) String channels, @Connection TxConnection connection){
+
     }
 }
